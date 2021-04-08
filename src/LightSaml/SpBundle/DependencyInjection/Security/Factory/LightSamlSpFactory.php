@@ -119,6 +119,9 @@ class LightSamlSpFactory extends AbstractFactory
     protected function createEntryPoint($container, $id, $config, $defaultEntryPointId)
     {
         $entryPointId = 'security.authentication.form_entry_point.'.$id;
+        if ($defaultEntryPointId !== null) {
+            return $defaultEntryPointId;
+        }
 
         if (class_exists('Symfony\Component\DependencyInjection\ChildDefinition')) {
             // Symfony >= 3.3
